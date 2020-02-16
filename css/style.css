@@ -1,0 +1,49 @@
+* {
+    background-color: rgb(244, 204, 248);
+  }
+  
+  section {
+    margin: 0, auto;
+  }
+  
+  img {
+    margin: 50px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: rgb(82, 63, 44);
+  
+    transition-property: border;
+    transition-duration: 3s;
+    transition-timing-function: linear;
+  }
+  
+  img:hover {
+    border-color: rgb(227, 236, 233);
+    transform: scale(1.15);
+  }
+  
+  .center {
+    text-align: center;
+    color: rgb(114, 90, 66);
+  }
+  
+  #headerText {
+    font-family: 'Lobster Two', cursive;
+    font-size: 72px;
+  }
+  
+  #directions {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 30px;
+  }
+  
+  #votes {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 50px;
+    text-align: left;
+  }
+  
+  #productList {
+    font-family: 'Poiret One', sans-serif;
+    color: rgb(126, 101, 76);
+  }
