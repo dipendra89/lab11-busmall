@@ -29,34 +29,34 @@ Product.prototype.pushToArray = function (){
   products.push(this);
 };
 Product.prototype.countDisplayed = function (){
-  this.displayed ++;
+  this.displayed++;
 };
 Product.prototype.countClicked = function (){
-  this.clicked ++;
+  this.clicked++;
 };
 
 // Using arrays
 var products = [
-  new Product('Travel Bag with eyes', 'bag.jpg'),
-  new Product('Yellow Banana Slicer', 'banana.jpg'),
-  new Product('Cutting edge bathroom toilet paper stand', 'bathroom.jpg'),
-  new Product('Open toe Wet Boots', 'boots.jpg'),
-  new Product('Francy Breakfast Maker with Built-in Coffee Maker', 'breakfast.jpg'),
-  new Product('Meatball Bubblegum', 'bubblegum.jpg'),
-  new Product('Not So Sexy Chair', 'chair.jpg'),
-  new Product('Scary Cthulhu with thung on', 'cthulhu.jpg'),
-  new Product('Cute Dog with Duck Mouth', 'dog-duck.jpg'),
-  new Product('Canned Dragon Meat Not so Healthy, just saying', 'dragon.jpg'),
-  new Product('Multitasking Pen with fork, spoon and everything', 'pen.jpg'),
-  new Product('Pet Sweep System', 'pet-sweep.jpg'),
-  new Product('Crazy Looking Pizza Scissors', 'scissors.jpg'),
-  new Product('Lazy Shark', 'shark.jpg'),
-  new Product('Hard working ', 'sweep.png'),
-  new Product('Cute Little TaunTaun', 'tauntaun.jpg'),
-  new Product('Radiant Farms Canned Unicorn Meat', 'unicorn.jpg'),
-  new Product('Funny Dinosaur USB Tail', 'usb.gif'),
-  new Product('Two in One Cup/Watering Can', 'water-can.jpg' ),
-  new Product('Wine Glass with Hole in it', 'wine-glass.jpg')
+  new Product('travel bag with eyes', 'bag.jpg'),
+  new Product('yellow banana slicer', 'banana.jpg'),
+  new Product('cutting edge bathroom toilet paper stand', 'bathroom.jpg'),
+  new Product('open toe Wet boots', 'boots.jpg'),
+  new Product('fancy breakfast maker with built-in coffee maker', 'breakfast.jpg'),
+  new Product('meatball bubblegum', 'bubblegum.jpg'),
+  new Product('not so sexy chair', 'chair.jpg'),
+  new Product('scary cthulhu with thung on', 'cthulhu.jpg'),
+  new Product('cute dog with duck mouth', 'dog-duck.jpg'),
+  new Product('canned dragon meat not so healthy, just saying', 'dragon.jpg'),
+  new Product('multi-tasking pen with fork, spoon and everything', 'pen.jpg'),
+  new Product('pet sweep system', 'pet-sweep.jpg'),
+  new Product('crazy looking pizza scissors', 'scissors.jpg'),
+  new Product('lazy shark', 'shark.jpg'),
+  new Product('hard working kid', 'sweep.png'),
+  new Product('cute little tauntaun', 'tauntaun.jpg'),
+  new Product('radiant farms canned unicorn meat', 'unicorn.jpg'),
+  new Product('funny dinosaur USB tail', 'usb.gif'),
+  new Product('two in one cup/watering can', 'water-can.jpg' ),
+  new Product('wine glass with hole in it', 'wine-glass.jpg')
 ];
 
 // resets the images
@@ -65,7 +65,7 @@ removeChildren(productListParent);
 // Direction on the top to click the item
 renderPrompts('Please, click on an item you would most likely to purchase.', 'directions');
 
-getProductState();
+// getProductState();                                                                            // Check this
 
 setup();
 eventListener();
@@ -89,7 +89,8 @@ function eventListener(){
 
 // eventHandler
 function eventHandler(event) {
-  numClick ++;
+  numClick++;
+  var countClicked = [];
 
   var answer = event.target.getAttribute('id');
   var index = getClickedObjectIndex(answer, displayedProducts);
@@ -103,7 +104,7 @@ function eventHandler(event) {
   setup();
 
   // We will need to stop at 25
-  if(maxClick <= numClick){
+  if(numClick >= maxClick){
     productImageParent.removeEventListener('click', eventHandler, true);
     // removing images
     removeChildren(productImageParent);
@@ -150,7 +151,8 @@ function generateProduct(){
   do{
     var index = Math.floor(Math.random() * products.length);
     var object = products[index];
-  } while (displayedProducts.includes(object));
+  } 
+  while (displayedProducts.includes(object));
 
   displayedProducts.push(object);
 
@@ -202,12 +204,11 @@ function displayVoteList(){
 
 
 
-// Here is CHART now
-// Next Class
+// Here is CHART now....Let's Work on CHART. YAY
 // Adding chart of data via chartJS
 function chart() {
   var description = [];
-  var clicked = [];
+  var clicked = [];                                                                              // Check this
 
   var canvas = document.getElementById('chart');
   var ctx = canvas.getContext('2d');
@@ -225,11 +226,21 @@ function chart() {
       labels: description,
       datasets: [{
         label: 'Times Image Clicked',
-        backgroundColor: 'rgb(66, 244, 188)',
+        backgroundColor: 'rgb(128,128,128)',
         borderColor: 'rgb(66,244,188)',
-        //Testing here
+  
         data: clicked,
-      }]
+      },
+
+      // {
+      //   label: 'Times Image Displayed',
+      //   backgroundColor: 'rgb(66, 244, 120)',
+      //   borderColor: 'rgb(66,244,188)',
+  
+      //   data: description,
+      // }
+    ]
+
     },
     options: {
       scales: {
@@ -245,7 +256,8 @@ function chart() {
 
 // We will be doing "STORAGE" in the later
 
-// Retrieving from localStorage
+// Retrieving from localStorage  
+getProductState();          
 function getProductState () {
   var storageProductState = localStorage.getItem('productState');
   if(storageProductState){
